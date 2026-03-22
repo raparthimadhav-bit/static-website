@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Static Website</title>
+  <meta name="description" content="A tiny static site for learning CI/CD with Docker." />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>My Static Website</h1>
+    <p class="tagline">Built for learning GitHub + Docker CI/CD</p>
+  </header>
+
+  <main class="content">
+    <section>
+      <h2>Why this is perfect for learning</h2>
+      <ul>
+        <li>Pure HTML/CSS/JS (no frameworks)</li>
+        <li>Works instantly with Nginx</li>
+        <li>Ideal for automated Docker builds</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Interactive demo</h2>
+      <p>Click the button to see JavaScript in action:</p>
+      <button id="helloBtn">Say Hello</button>
+      <p id="helloMsg" class="muted"></p>
+    </section>
+
+    <section>
+      <h2>Next steps</h2>
+      <ol>
+        <li>Create a Dockerfile in this repo</li>
+        <li>Set up GitHub Actions to build & push an image</li>
+        <li>Auto‑deploy to your NAS</li>
+      </ol>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>© <span id="year"></span> My Static Website • Made for learning</small>
+  </footer>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
+``
