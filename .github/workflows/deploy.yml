@@ -47,4 +47,3 @@ jobs:
 
     - name: Run new Site 2 container (port 8003)
       run: docker run -d --name site2 -p 8003:80 static-site-2:latest
-``
