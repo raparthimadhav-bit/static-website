@@ -1,0 +1,73 @@
+/* Super5 Theme */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at 20% 20%, #ff7ae5, #5b06d1 60%);
+  color: #fff;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.container {
+  margin: 60px auto;
+  max-width: 700px;
+  padding: 20px;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 10px;
+  font-weight: 700;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.subtitle {
+  color: #f5d9ff;
+  font-size: 1.2rem;
+  margin-bottom: 40px;
+}
+
+.btn {
+  background: linear-gradient(90deg, #ff5bf4, #00f5ff);
+  border: none;
+  padding: 14px 50px;
+  font-size: 1.4rem;
+  border-radius: 12px;
+  color: #151d27;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.25s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.btn:hover {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+.number-box {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.number-box span {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 18px 25px;
+  min-width: 60px;
+  font-size: 2.4rem;
+  border-radius: 15px;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,0.2);
+  transform: scale(1);
+  transition: all 0.25s ease;
+}
+
+.animate {
+  background: #00f5ff;
+  color: #180628;
+  transform: scale(1.25);
+  box-shadow: 0 0 25px rgba(0,255,255,0.6);
+}
