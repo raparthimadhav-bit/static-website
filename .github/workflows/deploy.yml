@@ -49,7 +49,7 @@ jobs:
       run: docker run -d --name site2 -p 8003:80 static-site-2:latest
 
 
-      site3:
+  site3:
     name: Deploy Site 3 (Super5)
     runs-on: self-hosted
 
