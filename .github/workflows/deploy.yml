@@ -47,3 +47,24 @@ jobs:
 
     - name: Run new Site 2 container (port 8003)
       run: docker run -d --name site2 -p 8003:80 static-site-2:latest
+
+
+      site3:
+    name: Deploy Site 3 (Super5)
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Build Site 3 image
+      run: docker build -t static-site-3:latest site3/
+
+    - name: Stop old Site 3 container
+      run: docker stop site3 || true
+
+    - name: Remove old Site 3 container
+      run: docker rm site3 || true
+
+    - name: Run new Site 3 container (port 8005)
+      run: docker run -d --name site3 -p 8005:80 static-site-3:latest
