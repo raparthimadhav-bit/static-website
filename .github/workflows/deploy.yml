@@ -1,25 +1,50 @@
-name: Deploy on NAS
+name: Deploy two sites on NAS
 
 on:
   push:
     branches: [ "main" ]
 
 jobs:
-  build-and-deploy:
+  site1:
+    name: Deploy Site 1
     runs-on: self-hosted
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Build Docker image locally on NAS
-      run: docker build -t static-site:latest .
+    # Site 1 builds from repository root
+    - name: Build Site 1 image
+      run: docker build -t static-site-1:latest .
 
-    - name: Stop old container if exists
-      run: docker stop static-site || true
+    - name: Stop old Site 1 container
+      run: docker stop site1 || true
 
-    - name: Remove old container if exists
-      run: docker rm static-site || true
+    - name: Remove old Site 1 container
+      run: docker rm site1 || true
 
-    - name: Run new container
-      run: docker run -d --name static-site -p 8002:80 static-site:latest
+    - name: Run new Site 1 container (port 8002)
+      run: docker run -d --name site1 -p 8002:80 static-site-1:latest
+
+
+  site2:
+    name: Deploy Site 2
+    runs-on: self-hosted
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    # Site 2 builds from the site2 directory
+    - name: Build Site 2 image
+      run: docker build -t static-site-2:latest site2/
+
+    - name: Stop old Site 2 container
+      run: docker stop site2 || true
+
+    - name: Remove old Site 2 container
+      run: docker rm site2 || true
+
+    - name: Run new Site 2 container (port 8003)
+      run: docker run -d --name site2 -p 8003:80 static-site-2:latest
+``
