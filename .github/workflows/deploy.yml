@@ -1,4 +1,4 @@
-name: Deploy to NAS
+name: Deploy on NAS
 
 on:
   push:
@@ -6,30 +6,20 @@ on:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Login to GitHub Container Registry
-      run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+    - name: Build Docker image locally on NAS
+      run: docker build -t static-site:latest .
 
-    - name: Build Docker image
-      run: docker build -t ghcr.io/${{ github.repository }}:latest .
+    - name: Stop old container if exists
+      run: docker stop static-site || true
 
-    - name: Push Docker image
-      run: docker push ghcr.io/${{ github.repository }}:latest
+    - name: Remove old container if exists
+      run: docker rm static-site || true
 
-    - name: Deploy to NAS via SSH
-      uses: appleboy/ssh-action@v1.2.0
-      with:
-        host: ${{ secrets.NAS_IP }}
-        username: ${{ secrets.NAS_USER }}
-        key: ${{ secrets.NAS_SSH_KEY }}
-        script: |
-          docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GHCR_TOKEN }}
-          docker pull ghcr.io/${{ github.repository }}:latest
-          docker stop static-site || true
-          docker rm static-site || true
-          docker run -d --name static-site -p 8002:80 ghcr.io/${{ github.repository }}:latest
+    - name: Run new container
+      run: docker run -d --name static-site -p 8002:80 static-site:latest
