@@ -1,4 +1,4 @@
-name: Deploy two sites on NAS
+name: Deploy multi-site on NAS
 
 on:
   push:
@@ -6,16 +6,16 @@ on:
 
 jobs:
   site1:
-    name: Deploy Site 1
+    name: Deploy Site 1 (site1 folder)
     runs-on: self-hosted
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # Site 1 builds from repository root
+    # Build docker image from site1 folder
     - name: Build Site 1 image
-      run: docker build -t static-site-1:latest .
+      run: docker build -t static-site-1:latest site1/
 
     - name: Stop old Site 1 container
       run: docker stop site1 || true
@@ -28,14 +28,14 @@ jobs:
 
 
   site2:
-    name: Deploy Site 2
+    name: Deploy Site 2 (site2 folder)
     runs-on: self-hosted
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    # Site 2 builds from the site2 directory
+    # Build docker image from site2 folder
     - name: Build Site 2 image
       run: docker build -t static-site-2:latest site2/
 
