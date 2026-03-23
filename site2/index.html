@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Site Two • DevOps Demo</title>
+  <meta name="description" content="Second static site for multi-site CI/CD demo on NAS." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="wrap">
+      <h1 class="title">Site Two</h1>
+      <p class="subtitle">A separate static site deployed by the **same** CI/CD pipeline</p>
+      <a class="cta" id="rollBtn" href="#demo">Roll a number</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="card">
+      <h2 id="demo">What makes this different?</h2>
+      <ul class="ticks">
+        <li>Lives under <code>/site2</code> in the same repository</li>
+        <li>Built by its own job and served on a different port (e.g., <code>8003</code>)</li>
+        <li>Uses a distinct theme so you can spot it instantly</li>
+      </ul>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h3>Interactive demo</h3>
+        <p>Click the button in the header to roll a random number:</p>
+        <p class="muted" id="rollOutput">Waiting…</p>
+      </div>
+      <div class="card">
+        <h3>Deployment flow</h3>
+        <ol>
+          <li>Edit files in <code>site2/</code></li>
+          <li>Commit to <strong>main</strong></li>
+          <li>GitHub Actions (self‑hosted runner on NAS) builds & redeploys automatically</li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <small>© <span id="year"></span> Site Two • Multi‑site CI/CD on NAS</small>
+    </div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
