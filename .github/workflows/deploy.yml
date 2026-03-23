@@ -24,7 +24,7 @@ jobs:
       run: docker rm site1 || true
 
     - name: Run new Site 1 container (port 8002)
-      run: docker run -d --name site1 -p 8002:80 static-site-1:latest
+      run: docker run -d --name site1 -p 8004:80 static-site-1:latest
 
 
   site2:
