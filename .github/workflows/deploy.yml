@@ -32,4 +32,4 @@ jobs:
           docker pull ghcr.io/${{ github.repository }}:latest
           docker stop static-site || true
           docker rm static-site || true
-          docker run -d --name static-site -p 8001:80 ghcr.io/${{ github.repository }}:latest
+          docker run -d --name static-site -p 8002:80 ghcr.io/${{ github.repository }}:latest
